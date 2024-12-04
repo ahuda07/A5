@@ -1,23 +1,46 @@
 import logo from './logo.svg';
 import './App.css';
+import React, { useState } from "react";
+
 
 function App() {
+  const [showPopup, setShowPopup] = useState(false);
+
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
+  };
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="Task">
+      <header className="AddTask">
+        <button className="Login" onClick={togglePopup}>
+          Add Task
+        </button>
       </header>
+
+      {showPopup && (
+        <div className="popup">
+          <div className="popup-content">
+            <h3>Add Task</h3>
+            <p>Enter task and due date</p>
+            <form>
+              <label>
+                <input type="text" placeholder="Task Name" />
+              </label>
+              <br />
+              <label>
+                <input type="date" placeholder="Due Date" />
+              </label>
+              <br />
+              <br />
+              <button type="submit">Submit</button>
+            </form>
+            <br />
+            <button onClick={togglePopup}>Close</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
